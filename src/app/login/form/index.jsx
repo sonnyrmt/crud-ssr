@@ -9,7 +9,7 @@ export const LoginFormulary = () => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onChange" });
 
   const submit = (values) => {
     console.log(values);
@@ -17,8 +17,24 @@ export const LoginFormulary = () => {
 
   return (
     <form onSubmit={handleSubmit(submit)} className="w-full">
-      <Input id={"username"} name={"username"} control={control} placeholder={"Username"} type="text" />
-      <Input id={"password"} name={"password"} control={control} placeholder={"Password"} type="password" />
+      <Input
+        id={"username"}
+        name={"username"}
+        control={control}
+        placeholder={"Username"}
+        errors={errors}
+        type="text"
+        rules={{ required: true }}
+      />
+      <Input
+        id={"password"}
+        name={"password"}
+        control={control}
+        placeholder={"Password"}
+        errors={errors}
+        type="password"
+        rules={{ required: true }}
+      />
       <Button type="submit" />
     </form>
   );
